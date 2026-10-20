@@ -1,0 +1,14 @@
+:root {
+  --topbar-bg: #c5a880;
+  --topbar-text: #1a1a1a;
+  --nav-bg: #ffffff;
+  --nav-text: #222222;
+  --nav-text-hover: #b01b4c;
+  --accent-color: #b01b4c;
+  --gold-accent: #c5a880;
+  --border-color: #eaeaea;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --transition-speed: 0.8s;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}

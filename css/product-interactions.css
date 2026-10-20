@@ -1,0 +1,256 @@
+/* ==========================================================================
+   PRODUCT CARD INTERACTION & HOVER ANIMATION (Refined per User Requirements)
+   - "Add to Cart" Bar sliding on Image
+   - On Hovering the "Add to Cart" Bar:
+       * "Add to Cart" bar smoothly moves UP
+       * A sleek Bag Icon Box smoothly rises from BOTTOM
+   - On Mouse Leave:
+       * Box slides down out of view
+       * "Add to Cart" returns down
+   - Right Vertical Action Sidebar (Wishlist, Compare, Quick View) with Staggered Slide-In
+   - Image Zoom on Card Hover
+   ========================================================================== */
+
+/* 1. Ensure Image Box has Relative Positioning & Overflow Hidden */
+.product-image-box,
+.trending-image-box,
+.latest-image-box,
+.card-image-box {
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: #faf7f2;
+}
+
+/* 2. Image Smooth Scale on Hover */
+.product-card:hover .product-img-primary,
+.trending-card:hover .trending-img-primary,
+.latest-card:hover .latest-img-primary,
+.collection-card:hover .card-img-primary {
+  transform: scale(1.06) !important;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* 3. Right Vertical Action Icons Sidebar */
+.product-action-sidebar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.action-sidebar-btn {
+  width: 36px;
+  height: 36px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  position: relative;
+}
+
+.action-sidebar-btn:nth-child(1) { transition-delay: 0.05s; }
+.action-sidebar-btn:nth-child(2) { transition-delay: 0.12s; }
+.action-sidebar-btn:nth-child(3) { transition-delay: 0.18s; }
+
+.product-card:hover .action-sidebar-btn,
+.trending-card:hover .action-sidebar-btn,
+.latest-card:hover .action-sidebar-btn,
+.collection-card:hover .action-sidebar-btn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.action-sidebar-btn svg {
+  width: 17px;
+  height: 17px;
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  fill: none;
+  transition: transform 0.25s ease, stroke 0.25s ease, fill 0.25s ease;
+}
+
+.action-sidebar-btn:hover {
+  background-color: #9c6c4c;
+  transform: scale(1.08) translateX(0);
+}
+
+.action-sidebar-btn:hover svg {
+  stroke: #ffffff;
+}
+
+.action-sidebar-btn.action-wishlist-btn.active svg {
+  fill: #cc0000;
+  stroke: #cc0000;
+}
+.action-sidebar-btn.action-wishlist-btn.active {
+  background-color: #ffffff;
+}
+
+.action-sidebar-btn.action-compare-btn.spinning svg {
+  animation: compareSpin 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes compareSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 4. Sliding "Add to Cart" Bar on Image Bottom */
+.select-options-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  cursor: pointer;
+  overflow: hidden;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.35s ease,
+              opacity 0.35s ease;
+  user-select: none;
+}
+
+/* Slide up into image bottom on card hover */
+.product-card:hover .select-options-bar,
+.trending-card:hover .select-options-bar,
+.latest-card:hover .select-options-bar,
+.collection-card:hover .select-options-bar {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* The "Add to Cart" Text inside the bar */
+.select-options-text {
+  font-family: var(--font-secondary, 'Montserrat', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* The Bag/Cart Icon Box (Starts below the bar, rises up on hover) */
+.select-options-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.select-options-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ==========================================================================
+   INTERACTIVE HOVER FLIP:
+   Jab mouse "Add to Cart" bar par jaye:
+   - Bar ka background luxury bronze (#9c6c4c) ho jata hai
+   - "Add to Cart" text UPAR chala jata hai (translateY(-100%))
+   - Niche se Bag Icon Box AATA hai (translateY(0))
+   Jab mouse hate:
+   - Box wapas niche chala jata hai
+   - Upar se "Add to Cart" wapas aa jata hai
+   ========================================================================== */
+.select-options-bar:hover {
+  background-color: #9c6c4c !important;
+}
+
+.select-options-bar:hover .select-options-text {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+
+.select-options-bar:hover .select-options-icon {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 5. Hide redundant duplicate static button below product info */
+.home-add-to-cart-btn,
+.card-add-to-cart-btn {
+  display: none !important;
+}
+
+/* Clean badges */
+.product-badge,
+.trending-badge,
+.latest-badge,
+.card-discount-badge {
+  border-radius: 0 !important;
+  font-family: var(--font-secondary, 'Montserrat', sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 5px 10px !important;
+  letter-spacing: 0.6px !important;
+}
+
+.quick-view-overlay,
+.card-quick-view-btn {
+  display: none !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .product-action-sidebar {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+  .action-sidebar-btn {
+    width: 32px;
+    height: 32px;
+    opacity: 0.95;
+    transform: none;
+  }
+  .action-sidebar-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  .select-options-bar {
+    transform: translateY(0);
+    opacity: 1;
+    height: 38px;
+  }
+  .select-options-text {
+    font-size: 11px;
+  }
+}

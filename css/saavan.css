@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Saavan Festive Collection Showcase Section (Full-Width Edge-to-Edge)
+   ========================================================================== */
+
+.saavan-section {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.saavan-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.saavan-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.saavan-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.saavan-banner:hover img {
+  transform: scale(1.01);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .saavan-section {
+    padding: 0;
+  }
+  .saavan-banner {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .saavan-section {
+    padding: 0;
+  }
+  .saavan-banner {
+    border-radius: 0;
+  }
+}

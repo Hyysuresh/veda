@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Parallax Showcase Sections (Fixed Background Layer & Luxury Typography)
+   ========================================================================== */
+
+.parallax-section {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 30px 0 0;
+  background-color: #1a1a1a;
+}
+
+/* Background image element for 100% reliable loading */
+.parallax-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
+  display: block;
+}
+
+/* Specific background images for fallback */
+.parallax-trending {
+  background-image: url('../public/photos/3.png');
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.parallax-latest {
+  background-image: url('../public/photos/1.png');
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Dark Ambient Tint Overlay */
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.65) 0%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(15, 23, 42, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+/* Content Container */
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 70px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Pink / Magenta Primary Title */
+.parallax-main-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  color: #d83a75;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  line-height: 1.15;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: subtlePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes subtlePulse {
+  0% {
+    text-shadow: 0 4px 20px rgba(216, 58, 117, 0.3);
+  }
+  100% {
+    text-shadow: 0 4px 30px rgba(216, 58, 117, 0.7);
+  }
+}
+
+/* White Bold Subheadline */
+.parallax-sub-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 18px;
+  line-height: 1.25;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Spaced Special Offer Tagline */
+.parallax-tagline {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  opacity: 0.95;
+  display: inline-block;
+  position: relative;
+  padding: 6px 16px;
+}
+
+.parallax-tagline::before,
+.parallax-tagline::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.parallax-tagline::before {
+  left: -35px;
+}
+
+.parallax-tagline::after {
+  right: -35px;
+}
+
+/* Floating Back To Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 86px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background-color: #d83a75;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(216, 58, 117, 0.45);
+  z-index: 980;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.back-to-top-btn:hover {
+  opacity: 1;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(216, 58, 117, 0.65);
+}
+
+.back-to-top-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 960px) {
+  .parallax-section {
+    min-height: 320px;
+    margin: 20px 0 0;
+  }
+  .parallax-content {
+    padding: 45px 20px;
+  }
+  .parallax-main-title {
+    font-size: 38px;
+  }
+  .parallax-sub-title {
+    font-size: 22px;
+  }
+  .parallax-tagline {
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 768px) {
+  .parallax-section {
+    min-height: 200px;
+    margin: 10px 0 0;
+  }
+  .parallax-content {
+    padding: 30px 14px;
+  }
+  .parallax-main-title {
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .parallax-sub-title {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .parallax-tagline {
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    padding: 3px 10px;
+  }
+  .parallax-tagline::before,
+  .parallax-tagline::after {
+    width: 16px;
+  }
+  .parallax-tagline::before {
+    left: -18px;
+  }
+  .parallax-tagline::after {
+    right: -18px;
+  }
+  .back-to-top-btn {
+    bottom: 74px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+  }
+  .back-to-top-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .parallax-section {
+    margin: 8px 0 0;
+    min-height: 180px;
+  }
+  .parallax-content {
+    padding: 24px 10px;
+  }
+  .parallax-main-title {
+    font-size: 19px;
+    margin-bottom: 4px;
+  }
+  .parallax-sub-title {
+    font-size: 12.5px;
+    margin-bottom: 6px;
+  }
+  .parallax-tagline {
+    font-size: 9.5px;
+    letter-spacing: 2px;
+  }
+}

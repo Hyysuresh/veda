@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Hero Showcase Section (Grand Luxury Fashion Banner Layout)
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 90px);
+  min-height: 600px;
+  max-height: 860px;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+
+.hero-slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.02);
+  transition: opacity var(--transition-speed) var(--transition-timing),
+              transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+              visibility var(--transition-speed);
+  will-change: opacity, transform, visibility;
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* Subtle overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Vertical Slider Indicators on the Right Side (Exact Match to Reference) */
+.hero-indicators-vertical {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  z-index: 10;
+}
+
+.vertical-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111111;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.vertical-dot.active {
+  background: #111111;
+  width: 7px;
+  height: 7px;
+}
+
+.vertical-dot.active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #111111;
+  border-radius: 50%;
+}
+
+/* Floating WhatsApp Button (Bottom Right) */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+  z-index: 990;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.6);
+}
+
+.floating-whatsapp svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+/* 3-Second Real-Time Countdown Progress Bar */
+.slider-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.slider-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-color);
+  transition: width 0.05s linear;
+}
+
+/* Responsive adjustments (Mobile Only, Desktop Untouched) */
+@media (max-width: 960px) {
+  .hero-section {
+    height: auto;
+    aspect-ratio: 2027 / 776;
+    min-height: unset;
+    max-height: unset;
+    background-color: #f7f7f7;
+  }
+
+  .hero-slide img {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    aspect-ratio: 2027 / 776;
+    min-height: unset;
+    max-height: unset;
+    background-color: #f7f7f7;
+  }
+
+  .hero-slide img {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .hero-indicators-vertical {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .vertical-dot {
+    width: 6px;
+    height: 6px;
+    background: #444444;
+  }
+
+  .vertical-dot.active {
+    background: #111111;
+    width: 6px;
+    height: 6px;
+  }
+
+  .vertical-dot.active::after {
+    width: 14px;
+    height: 14px;
+    border-color: #111111;
+  }
+
+  .floating-whatsapp {
+    bottom: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-whatsapp svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: auto;
+    aspect-ratio: 2027 / 776;
+  }
+
+  .hero-slide img {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .hero-indicators-vertical {
+    bottom: 6px;
+    padding: 3px 8px;
+    gap: 6px;
+  }
+
+  .vertical-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .vertical-dot.active {
+    width: 5px;
+    height: 5px;
+  }
+
+  .vertical-dot.active::after {
+    width: 11px;
+    height: 11px;
+  }
+}
